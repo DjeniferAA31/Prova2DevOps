@@ -17,6 +17,30 @@ services:
     networks:
       - app-network
 
+  api:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+
+    container_name: customers-api
+
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: customers_db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - db
+
+    networks:
+      - app-network
+
   front:
     build:
       context: ../front
@@ -26,6 +50,9 @@ services:
 
     ports:
       - "8080:80"
+
+    depends_on:
+      - api
 
     networks:
       - app-network
