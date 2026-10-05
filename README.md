@@ -10,7 +10,7 @@
 
 Clone o repositório:
 
-git clone linck
+git clone link
 
 Entre na pasta:
 
